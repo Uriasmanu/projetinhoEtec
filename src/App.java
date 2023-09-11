@@ -20,33 +20,35 @@ public class App {
         }
 
         // Criar uma instância da classe AluguelCarro e chamar seu construtor
-      //  AluguelCarro aluguelCarro = new AluguelCarro();
+       AluguelCarro aluguelCarro = new AluguelCarro();
     }
 }
-/* 
+
 class AluguelCarro {
     String modelo;
+    String EntradaDias;
     int dias;
+    String EntradaKm;
     int km;
     int diarias = 30;
     double total;
     double taxaKm = 0.20;
 
     public AluguelCarro() {
-        Scanner leitor = new Scanner(System.in);
 
-        System.out.println("Seja bem-vindo(a) ao sistema da Loja SPCar");
+        JOptionPane.showMessageDialog(null,"Seja bem-vindo(a) ao sistema da Loja SPCar");
 
-        System.out.println("Por gentileza, digite o modelo do carro escolhido");
-        modelo = leitor.nextLine();
+        modelo = JOptionPane.showInputDialog("Por gentileza, digite o modelo do carro escolhido");
 
-        System.out.println("Digite quantos dias você utilizou o " + modelo);
-        dias = leitor.nextInt();
+        EntradaDias = JOptionPane.showInputDialog("Digite quantos dias você utilizou o " + modelo);
 
-        System.out.println("Digite quantos km você rodou com o " + modelo);
-        km = leitor.nextInt();
+        dias = Integer.parseInt(EntradaDias);
+
+        EntradaKm = JOptionPane.showInputDialog("Digite quantos km você rodou com o " + modelo);
+        km = Integer.parseInt(EntradaKm);
+
         total = (dias * diarias) + (km * taxaKm);
-        System.out.println("O valor a ser pago pelo aluguel do " + modelo + " é " + total);
+
+        JOptionPane.showMessageDialog(null, "O valor a ser pago pelo aluguel do " + modelo + " é " + total);
     }
 }
-*/
