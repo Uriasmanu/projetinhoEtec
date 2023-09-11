@@ -1,51 +1,65 @@
 import javax.swing.JOptionPane;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        String Entradaidade;
-        int idade;
 
-        Entradaidade = JOptionPane.showInputDialog("Por gentileza, antes de entrar na fila, digite a sua idade: ");
+    public static void main(String[] args) {
+        // Mensagem de boas-vindas
+        JOptionPane.showMessageDialog(null, "Seja bem-vindo(a) ao sistema da Loja SPCar");
 
-        idade = Integer.parseInt(Entradaidade);
+        String login = JOptionPane.showInputDialog("Digite o seu login");
+        String senha = JOptionPane.showInputDialog("Digite a sua senha");
 
-        if (idade >= 60) {
-            if (idade >= 80) {
-                JOptionPane.showMessageDialog(null,"O(A) senhor(a) irá para a fila de prioridade especial");
-            } else {
-                JOptionPane.showMessageDialog(null,"O(A) senhor(a) irá para a fila de prioridade");
-            }
+        if (login.equals("aluno") && senha.equals("aluno")) {
+            JOptionPane.showMessageDialog(null, "Acesso Liberado");
         } else {
-            JOptionPane.showMessageDialog(null,"O(A) senhor(a) irá para a fila normal\n");
+            JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
         }
 
-        // Criar uma instância da classe AluguelCarro e chamar seu construtor
-       AluguelCarro aluguelCarro = new AluguelCarro();
+        // Criação de uma instância da classe Fila
+        Fila fila = new Fila();
+        fila.verificarPrioridade();
+        
+        // Criação de uma instância da classe AluguelCarro
+        AluguelCarro aluguelCarro = new AluguelCarro();
+        aluguelCarro.calcularAluguel();
+    }
+}
+
+class Fila {
+    private int idade;
+
+    public void verificarPrioridade() {
+        String entradaIdade = JOptionPane.showInputDialog("Por gentileza, antes de entrar na fila, digite a sua idade: ");
+        idade = Integer.parseInt(entradaIdade);
+
+        if (idade >= 80) {
+            JOptionPane.showMessageDialog(null, "O(A) senhor(a) irá para a fila de prioridade especial");
+        } else if (idade >= 60) {
+            JOptionPane.showMessageDialog(null, "O(A) senhor(a) irá para a fila de prioridade");
+        } else {
+            JOptionPane.showMessageDialog(null, "O(A) senhor(a) irá para a fila normal");
+        }
     }
 }
 
 class AluguelCarro {
-    String modelo;
-    String EntradaDias;
-    int dias;
-    String EntradaKm;
-    int km;
-    int diarias = 30;
-    double total;
-    double taxaKm = 0.20;
+    private String modelo;
+    private int dias;
+    private int km;
+    private int diarias = 30;
+    private double total;
+    private double taxaKm = 0.20;
 
-    public AluguelCarro() {
-
-        JOptionPane.showMessageDialog(null,"Seja bem-vindo(a) ao sistema da Loja SPCar");
+    public void calcularAluguel() {
+        JOptionPane.showMessageDialog(null, "A seguir o sistema de aluguel de carros");
 
         modelo = JOptionPane.showInputDialog("Por gentileza, digite o modelo do carro escolhido");
 
-        EntradaDias = JOptionPane.showInputDialog("Digite quantos dias você utilizou o " + modelo);
+        String entradaDias = JOptionPane.showInputDialog("Digite quantos dias você utilizou o " + modelo);
+        dias = Integer.parseInt(entradaDias);
 
-        dias = Integer.parseInt(EntradaDias);
-
-        EntradaKm = JOptionPane.showInputDialog("Digite quantos km você rodou com o " + modelo);
-        km = Integer.parseInt(EntradaKm);
+        String entradaKm = JOptionPane.showInputDialog("Digite quantos km você rodou com o " + modelo);
+        km = Integer.parseInt(entradaKm);
 
         total = (dias * diarias) + (km * taxaKm);
 
