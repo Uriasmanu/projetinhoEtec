@@ -1,29 +1,29 @@
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        String Entradaidade;
         int idade;
 
-        Scanner leitor = new Scanner(System.in);
+        Entradaidade = JOptionPane.showInputDialog("Por gentileza, antes de entrar na fila, digite a sua idade: ");
 
-        System.out.println("Por gentileza, antes de entrar na fila, digite a sua idade: ");
-        idade = leitor.nextInt();
+        idade = Integer.parseInt(Entradaidade);
 
         if (idade >= 60) {
             if (idade >= 80) {
-                System.out.println("O(A) senhor(a) irá para a fila de prioridade especial");
+                JOptionPane.showMessageDialog(null,"O(A) senhor(a) irá para a fila de prioridade especial");
             } else {
-                System.out.println("O(A) senhor(a) irá para a fila de prioridade");
+                JOptionPane.showMessageDialog(null,"O(A) senhor(a) irá para a fila de prioridade");
             }
         } else {
-            System.out.println("O(A) senhor(a) irá para a fila normal\n");
+            JOptionPane.showMessageDialog(null,"O(A) senhor(a) irá para a fila normal\n");
         }
 
         // Criar uma instância da classe AluguelCarro e chamar seu construtor
-        AluguelCarro aluguelCarro = new AluguelCarro();
+      //  AluguelCarro aluguelCarro = new AluguelCarro();
     }
 }
-
+/* 
 class AluguelCarro {
     String modelo;
     int dias;
@@ -49,3 +49,4 @@ class AluguelCarro {
         System.out.println("O valor a ser pago pelo aluguel do " + modelo + " é " + total);
     }
 }
+*/
