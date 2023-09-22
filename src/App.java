@@ -50,35 +50,39 @@ public class App {
 
 class AutentificacaoAdmin {
 
-    public boolean verificarLogin (){
+    public boolean verificarLogin() {
         String login = JOptionPane.showInputDialog("Digite o seu login");
         String senha = JOptionPane.showInputDialog("Digite a sua senha");
 
-        if (login.equals("admin") && senha.equals("admin")) {
-            JOptionPane.showMessageDialog(null, "Acesso Liberado");
-            return true; // Credenciais corretas
-        } else {
-            JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
-            return false; // Credenciais incorretas
+        while (!login.equals("Admin") || !senha.equals("Admin")) {
+            JOptionPane.showMessageDialog(null, "Login ou senha incorretos, tente novamente");
+            login = JOptionPane.showInputDialog("Digite o seu login");
+            senha = JOptionPane.showInputDialog("Digite a sua senha");
         }
+
+        JOptionPane.showMessageDialog(null, "Acesso liberado");
+        return true;
     }
 }
+
 
 class Autentificacao {
 
-    public boolean verificarLogin (){
+    public boolean verificarLogin() {
         String login = JOptionPane.showInputDialog("Digite o seu login");
         String senha = JOptionPane.showInputDialog("Digite a sua senha");
 
-        if (login.equals("cliente") && senha.equals("cliente")) {
-            JOptionPane.showMessageDialog(null, "Acesso Liberado");
-            return true; // Credenciais corretas
-        } else {
-            JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
-            return false; // Credenciais incorretas
+        while (!login.equals("cliente") || !senha.equals("cliente")) {
+            JOptionPane.showMessageDialog(null, "Login ou senha incorretos, tente novamente");
+            login = JOptionPane.showInputDialog("Digite o seu login");
+            senha = JOptionPane.showInputDialog("Digite a sua senha");
         }
+
+        JOptionPane.showMessageDialog(null, "Acesso liberado");
+        return true;
     }
 }
+
 
 class Fila {
     private int idade;
