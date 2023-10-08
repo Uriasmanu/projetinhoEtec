@@ -6,7 +6,7 @@ public class App {
         // Mensagem de boas-vindas
         JOptionPane.showMessageDialog(null, "Seja bem-vindo(a) ao sistema da Loja SPCar");
 
-        int opcao, submenu;
+        int opcao;
 
         opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opção" + 
         "\n1 - Sou usuário" +
@@ -15,8 +15,8 @@ public class App {
         switch(opcao){
             case 1:
                 JOptionPane.showMessageDialog(null,"Faça o login");
-                Autentificacao autentificacao = new Autentificacao();
-                if (!autentificacao.verificarLogin()) {
+                ConfirmaSenhas confirmaSenhas = new ConfirmaSenhas();
+                if (!confirmaSenhas.verificarLogin("Cliente")) {
                     return; // Encerra o programa se as credenciais forem incorretas
                 }
 
@@ -30,8 +30,9 @@ public class App {
                 break;
 
             case 2:
-                AutentificacaoAdmin autentificacaoAdmin = new AutentificacaoAdmin();
-                if (!autentificacaoAdmin.verificarLogin()) {
+                JOptionPane.showMessageDialog(null,"Faça o login de administrador");
+                ConfirmaSenhas confirmaSenhasAdmin = new ConfirmaSenhas();
+                if (!confirmaSenhasAdmin.verificarLogin("Admin")) {
                     return; // Encerra o programa se as credenciais forem incorretas
                 }
 
@@ -41,48 +42,36 @@ public class App {
                 break;
 
             default:
-            JOptionPane.showMessageDialog(null, "Opção invalida");
+            JOptionPane.showMessageDialog(null, "Opção inválida");
         }
-
     }
-    
 }
 
-class AutentificacaoAdmin {
-
-    public boolean verificarLogin() {
+class ConfirmaSenhas {
+    public boolean verificarLogin(String userType) {
         String login = JOptionPane.showInputDialog("Digite o seu login");
-        String senha = JOptionPane.showInputDialog("Digite a sua senha");
+        String senhaInserida = JOptionPane.showInputDialog("Digite a sua senha");
+        String[] loginCorreto = {"Admin", "Cliente"};
+        String[] senhasCorretas = {"Admin", "Cliente"};
 
-        while (!login.equals("Admin") || !senha.equals("Admin")) {
-            JOptionPane.showMessageDialog(null, "Login ou senha incorretos, tente novamente");
-            login = JOptionPane.showInputDialog("Digite o seu login");
-            senha = JOptionPane.showInputDialog("Digite a sua senha");
+        boolean loginCorretoFlag = false;
+
+        for (int i = 0; i < loginCorreto.length; i++) {
+            if (userType.equals(loginCorreto[i]) && senhaInserida.equals(senhasCorretas[i])) {
+                loginCorretoFlag = true;
+                break;
+            }
         }
 
-        JOptionPane.showMessageDialog(null, "Acesso liberado");
-        return true;
-    }
-}
-
-
-class Autentificacao {
-
-    public boolean verificarLogin() {
-        String login = JOptionPane.showInputDialog("Digite o seu login");
-        String senha = JOptionPane.showInputDialog("Digite a sua senha");
-
-        while (!login.equals("cliente") || !senha.equals("cliente")) {
-            JOptionPane.showMessageDialog(null, "Login ou senha incorretos, tente novamente");
-            login = JOptionPane.showInputDialog("Digite o seu login");
-            senha = JOptionPane.showInputDialog("Digite a sua senha");
+        if (loginCorretoFlag) {
+            JOptionPane.showMessageDialog(null, "Login e senha corretos. Acesso permitido!");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Login ou senha incorretos. Acesso negado.");
+            return false;
         }
-
-        JOptionPane.showMessageDialog(null, "Acesso liberado");
-        return true;
     }
 }
-
 
 class Fila {
     private int idade;
@@ -122,7 +111,7 @@ class AluguelCarro {
 
         total = (dias * diarias) + (km * taxaKm);
 
-        JOptionPane.showMessageDialog(null, "Nos cobramos um valor fixo de diaria de " + diarias);
+        JOptionPane.showMessageDialog(null, "Nós cobramos um valor fixo de diária de " + diarias);
         JOptionPane.showMessageDialog(null, "Então o valor a ser pago pelo aluguel do " + modelo + " é " + total);
     }
 }
@@ -161,7 +150,7 @@ class AdminMenu {
                 break;
 
             default:
-                JOptionPane.showMessageDialog(null,"Opção invalida");
+                JOptionPane.showMessageDialog(null,"Opção inválida");
                 break;
         }
     }
